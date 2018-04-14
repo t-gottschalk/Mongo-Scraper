@@ -1,0 +1,64 @@
+<!-- jumbotron -->
+<div class="jumbotron text-center">
+    <div class="overlay"></div>
+    <div class="background-image"></div>
+    <div class="caption">
+        <h1>Favorites</h1>
+        <p>Manage Your Saved Content</p>
+    </div>
+</div>
+
+<!-- articles -->
+<div class="container-fluid article-container">
+
+    <!-- SAVED ARTICLES -->
+    {{#saved}}
+    <div class="panel panel-default">
+        <div class="panel-heading">            
+            <img src="{{photo}}" class="article-photo">
+            <h2>{{title}}</h2>
+            <a class="btn btn-info notes modal-triggers" data-id="{{_id}}" data-toggle="modal" data-target="#modal-{{_id}}">Comment</a>
+            <a class="btn btn-danger delete" data-id="{{_id}}">Remove</a>
+        </div>
+        <div class="panel-body">
+            <p>{{description}}  <a class="article-link" target="_blank" href="{{link}}">Read More</a></p>
+        </div>
+    </div>
+    {{/saved}}
+
+</div>
+
+<!-- Modal -->
+{{#saved}}
+<div id="modal-{{_id}}" class="modal fade" role="dialog">
+<div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header panel-heading">
+            <button type="button" class="close" data-dismiss="modal" style="color:#FFF;">&times;</button>
+            <h4 class="modal-title panel-heading">Add New Comment</h4>
+        </div>
+        <div class="modal-body">
+            <form id="comment-{{_id}}" onsubmit="addNote">
+                <input id="author-{{_id}}" class="author" type="text" name="author" placeholder="Your Name"><br>
+                <textarea id="comment-{{_id}}" class="comment-area" name="textarea" rows="10" cols="50" placeholder="Add Comment..."></textarea>
+            </form>
+            <button type="button" data-id="{{_id}}" form="comment-{{_id}}" class="btn btn-info pull-right new-comment">Submit</button>
+            <div class="clearfix"></div><hr>
+            <h5>Comment History:</h5>
+            {{#if note}}
+            <div class="notes">
+                {{#note}}
+                <li>{{author}}: "{{comment}}"</li>
+                {{/note}}
+            </div>
+            {{else}}
+            <p>Be the first to comment on this article!</p>
+            {{/if}}         
+        </div>
+    </div>
+
+</div>
+</div>
+{{/saved}}

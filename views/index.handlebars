@@ -1,0 +1,50 @@
+<!-- jumbotron -->
+<div class="jumbotron text-center">
+    <div class="overlay"></div>
+    <div class="background-image"></div>
+    <div class="caption">
+        <h1><strong>Techies</strong></h1>
+        <p>Your Place for Technology-Focused News and Events</p>
+        <a class="btn btn-info scrape-new modal-triggers" data-toggle="modal" data-target="#alert-modal">CHECK FOR NEW ARTICLES</a>
+    </div>
+</div>
+
+<!-- articles -->
+<div class="container-fluid article-container">
+
+    <!-- NEW ARTICLES -->
+    {{#new}}
+    <div class="panel panel-default">
+        <div class="panel-heading">            
+            <img src="{{photo}}" class="article-photo">
+            <h2>{{title}}</h2>
+            <a class="btn btn-success save" data-id="{{_id}}">Save to Favorites</a>
+        </div>
+        <div class="panel-body">
+            <p>{{description}}  <a class="article-link" target="_blank" href="{{link}}">Read More</a></p>
+        </div>
+    </div>
+    {{/new}}
+
+</div>
+
+<!-- Modal -->
+<div id="alert-modal" class="modal fade" role="dialog">
+<div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header panel-heading">
+            <button type="button" class="close" data-dismiss="modal" style="color:#FFF;">&times;</button>
+            <h4 class="modal-title panel-heading">Tech<b>Talk</b></h4>
+        </div>
+        <div class="modal-body">
+            <p id="alert-content"></p>   
+        </div>
+        <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn btn-info pull-right">Okay</button>
+        </div>    
+    </div>
+
+</div>
+</div>

@@ -38,16 +38,10 @@
                     result.photo = $(element).children(".story-photo").children("a").children("img").attr("org-src");
                     result.description = $(element).children(".story-content").children("p").text();
                     db.Article.create(result).then(dbArticle => res.json(dbArticle)).catch(err => res.json(err));
-                    // result.push({
-                    //   title: title,
-                    //   link: link,
-                    //   photo: photo,
-                    //   description: description
-                    // });
                 });
             });
         });
 
-    }
+    };
 
 })();  

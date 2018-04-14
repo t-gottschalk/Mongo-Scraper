@@ -6,7 +6,7 @@
 	const exphbs = require("express-handlebars");
 	const db = require("./models");
 	const PORT = process.env.PORT || 3000;
-	const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraper";
+	const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/techtalk";
 
 	app.use(bodyParser.urlencoded({ extended: true }));
 	app.use(bodyParser.json());
@@ -19,10 +19,13 @@
 	app.set("view engine", "handlebars");
 
 	mongoose.Promise = Promise;
+// 	mongoose.connect(MONGODB_URI, {
+//     useMongoClient: true
+// });
 	mongoose.connect(MONGODB_URI);
 
 	app.listen(PORT, function() {
 		console.log("App is running on port " + PORT + "!");
 	});
-
 })();
+
