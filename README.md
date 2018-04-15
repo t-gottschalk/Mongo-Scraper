@@ -1,7 +1,7 @@
 # Mongo-Scraper
 UNC Bootcamp Homework
 
-Created during UNC Coding Bootcamp. This assignment was to create an online web scraper app using Node, Express, Handlebars, Mongoose, Cheerio and to deploy on Heroku usig mLab.
+Created during UNC Coding Bootcamp. This assignment was to create an online web scraper app using Node, Express, Handlebars, Mongoose, and Cheerio while deploying on Heroku using mLab.
 
 Technology used:
 
