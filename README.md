@@ -8,16 +8,13 @@ Technology used:
 * Node.js
 * Express
 * NPM
-* MySQL
-* Handlebars (NPM Package)
-mLab
+* Mongoose
+* Handlebars
+* Body-parser
+* Cheerio
+* Request
+* mLab
 
 Getting Started Heroku link:
 
 https://whispering-coast-33878.herokuapp.com/
-
-https://git.heroku.com/whispering-coast-33878.git
-
-Created mongolab-flat-87663 as MONGODB_URI
-
-

@@ -4,6 +4,22 @@
     const cheerio = require("cheerio");
 
     module.exports = app => {
+
+        // Scrape articles
+        app.get("/api/articles/scrape", (req, res) => {
+            request("https://www.reuters.com/news/archive/technologyNews/", (error, response, html) => {
+                let $ = cheerio.load(html);
+                let result = {};
+                $(".story").each(function (i, element) {
+                    result.title = $(element).children(".story-content").children("a").children(".story-title").text().trim();
+                    result.link = "https://www.reuters.com/" + $(element).children(".story-content").children("a").attr("href");
+                    result.photo = $(element).children(".story-photo").children("a").children("img").attr("org-src");
+                    result.description = $(element).children(".story-content").children("p").text();
+                    db.Article.create(result).then(dbArticle => res.json(dbArticle)).catch(err => res.json(err));
+                });
+            });
+        });
+
         // api route for all articles from the db
         app.get("/api/articles", (req, res) => db.Article.find({}).then(data => res.json(data)).catch(err => res.json(err)));
 
@@ -25,23 +41,6 @@
         // api route to delete an article
         // this is just templating; no user functunality in place yet
         app.delete("/api/articles/delete/:id", (req, res) => db.Article.delete({_id: req.params.id})
-        .then(data => res.json(data)).catch(err => res.json(err)));
-
-        // Scrape articles
-        app.get("/api/articles/scrape", (req, res) => {
-            request("https://www.reuters.com/news/archive/technologyNews/", (error, response, html) => {
-                let $ = cheerio.load(html);
-                let result = {};
-                $(".story").each(function (i, element) {
-                    result.title = $(element).children(".story-content").children("a").children(".story-title").text().trim();
-                    result.link = "https://www.reuters.com/" + $(element).children(".story-content").children("a").attr("href");
-                    result.photo = $(element).children(".story-photo").children("a").children("img").attr("org-src");
-                    result.description = $(element).children(".story-content").children("p").text();
-                    db.Article.create(result).then(dbArticle => res.json(dbArticle)).catch(err => res.json(err));
-                });
-            });
-        });
-
+        .then(data => res.json(data)).catch(err => res.json(err)));        
     };
-
 })();  
