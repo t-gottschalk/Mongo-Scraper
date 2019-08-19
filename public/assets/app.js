@@ -1,4 +1,4 @@
-(()=>{
+(()=>{ // IIFE (Immediately Invoked Function Expression)
     $(document).ready(()=>{
         // event trigger to scrape articles from Reuters
         $(document).on("click", ".scrape-new", function(event) {
